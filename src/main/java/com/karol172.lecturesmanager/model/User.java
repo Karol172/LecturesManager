@@ -40,4 +40,89 @@ public class User {
     private Set<Lecture> listenedLectures;
 
     public User() { }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Set<Lecture> getConductedLectures() {
+        return conductedLectures;
+    }
+
+    public void setConductedLectures(Set<Lecture> conductedLectures) {
+        this.conductedLectures = conductedLectures;
+    }
+
+    public Set<Lecture> getListenedLectures() {
+        return listenedLectures;
+    }
+
+    public void setListenedLectures(Set<Lecture> listenedLectures) {
+        this.listenedLectures = listenedLectures;
+    }
+
+    public void addConductedLecture (Lecture lecture) {
+        if (lecture != null && !conductedLectures.contains(lecture))
+            lecture.getSpeakers().add(this);
+    }
+
+    public void removeConductedLecture (Lecture lecture) {
+        if (lecture != null && conductedLectures.contains(lecture))
+            lecture.getSpeakers().remove(this);
+    }
+
+    public void addListenedLecture (Lecture lecture) {
+        if (lecture != null && !listenedLectures.contains(lecture))
+            lecture.getPresentLiseners().add(this);
+    }
+
+    public void removeListenedLecture (Lecture lecture) {
+        if (lecture != null && listenedLectures.contains(lecture))
+            lecture.getPresentLiseners().remove(this);
+    }
+
 }

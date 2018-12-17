@@ -35,4 +35,61 @@ public class Lecture {
     private Set<User> presentLiseners;
 
     public Lecture() { }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public Set<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(Set<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
+    public Set<User> getSpeakers() {
+        return speakers;
+    }
+
+    public void setSpeakers(Set<User> speakers) {
+        this.speakers = speakers;
+    }
+
+    public Set<User> getPresentLiseners() {
+        return presentLiseners;
+    }
+
+    public void setPresentLiseners(Set<User> presentLiseners) {
+        this.presentLiseners = presentLiseners;
+    }
+
 }

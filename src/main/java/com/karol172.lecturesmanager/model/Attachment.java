@@ -26,4 +26,45 @@ public class Attachment {
     private Lecture lecture;
 
     public Attachment() { }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrlAddress() {
+        return urlAddress;
+    }
+
+    public void setUrlAddress(String urlAddress) {
+        this.urlAddress = urlAddress;
+    }
+
+    public Lecture getLecture() {
+        return lecture;
+    }
+
+    public void setLecture(Lecture lecture) {
+        this.lecture = lecture;
+    }
+
 }
