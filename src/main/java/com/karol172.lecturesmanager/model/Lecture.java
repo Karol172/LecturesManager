@@ -26,5 +26,13 @@ public class Lecture {
     @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL)
     private Set<Attachment> attachments;
 
+    @ManyToMany(mappedBy = "conductedLectures", fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    private Set<User> speakers;
+
+    @ManyToMany(mappedBy = "listenedLectures", fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    private Set<User> presentLiseners;
+
     public Lecture() { }
 }

@@ -1,6 +1,7 @@
 package com.karol172.lecturesmanager.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "USER")
@@ -27,6 +28,16 @@ public class User {
     @Column(name = "ROLE", nullable = false)
     @Enumerated
     private Role role;
+
+    @ManyToMany(cascade = {CascadeType.DETACH})
+    @JoinTable(name = "SPEAKERS", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID"))
+    private Set<Lecture> conductedLectures;
+
+    @ManyToMany(cascade = {CascadeType.DETACH})
+    @JoinTable(name = "PRESENCE", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID"))
+    private Set<Lecture> listenedLectures;
 
     public User() { }
 }
