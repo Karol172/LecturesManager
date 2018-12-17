@@ -2,6 +2,7 @@ package com.karol172.lecturesmanager.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "LECTURE")
@@ -21,6 +22,9 @@ public class Lecture {
 
     @Column(name = "DATE", nullable = false)
     private LocalDateTime date;
+
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL)
+    private Set<Attachment> attachments;
 
     public Lecture() { }
 }

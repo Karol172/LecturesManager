@@ -21,5 +21,9 @@ public class Attachment {
     @Column(name = "URL_ADDRESS", nullable = false, updatable = false)
     private String urlAddress;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "LECTURE_ID", updatable = false)
+    private Lecture lecture;
+
     public Attachment() { }
 }
