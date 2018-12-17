@@ -24,5 +24,9 @@ public class User {
     @Column(name = "IS_ACTIVE")
     private Boolean isActive;
 
+    @Column(name = "ROLE", nullable = false)
+    @Enumerated
+    private Role role;
+
     public User() { }
 }
