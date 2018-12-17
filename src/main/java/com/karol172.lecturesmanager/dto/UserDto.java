@@ -94,4 +94,5 @@ public class UserDto implements Serializable {
     public void setListenedLectures(Set<Long> listenedLectures) {
         this.listenedLectures = listenedLectures;
     }
+
 }
