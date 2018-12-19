@@ -1,6 +1,5 @@
 package com.karol172.lecturesmanager.dto;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Set;
@@ -8,11 +7,9 @@ import java.util.Set;
 public class UserDto implements Serializable {
 
     @NotNull
-    @NotEmpty
     private Long id;
 
     @NotNull
-    @NotEmpty
     private String login;
 
     private String password;
@@ -22,7 +19,6 @@ public class UserDto implements Serializable {
     private Boolean isActive;
 
     @NotNull
-    @NotEmpty
     private String role;
 
     private Set<Long> conductedLectures;
