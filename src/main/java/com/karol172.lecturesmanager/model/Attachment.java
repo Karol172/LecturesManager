@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Attachment {
 
     @Id
-    @SequenceGenerator(name = "ATTACHMENT_SEQ_GEN", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ATTACHMENT_SEQ_GEN")
+    @SequenceGenerator(name = "attachment_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attachment_seq")
     @Column(name = "ID")
     private Long id;
 

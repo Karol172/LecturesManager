@@ -8,8 +8,8 @@ import java.util.Set;
 public class User {
 
     @Id
-    @SequenceGenerator(name = "USER_SEQ_GEN", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ_GEN")
+    @SequenceGenerator(name = "user_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @Column(name = "ID")
     private Long id;
 
@@ -29,14 +29,10 @@ public class User {
     @Enumerated
     private Role role;
 
-    @ManyToMany(cascade = {CascadeType.DETACH})
-    @JoinTable(name = "SPEAKERS", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID"))
+    @ManyToMany(mappedBy = "speakers", fetch = FetchType.EAGER)
     private Set<Lecture> conductedLectures;
 
-    @ManyToMany(cascade = {CascadeType.DETACH})
-    @JoinTable(name = "PRESENCE", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID"))
+    @ManyToMany(mappedBy = "presentLiseners")
     private Set<Lecture> listenedLectures;
 
     public User() { }

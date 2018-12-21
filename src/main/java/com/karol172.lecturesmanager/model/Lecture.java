@@ -9,8 +9,8 @@ import java.util.Set;
 public class Lecture {
 
     @Id
-    @SequenceGenerator(name = "LECTURE_SEQ_GEN", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LECTURE_SEQ_GEN")
+    @SequenceGenerator(name = "lecture_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lecture_seq")
     @Column(name = "ID")
     private Long id;
 
@@ -26,12 +26,14 @@ public class Lecture {
     @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL)
     private Set<Attachment> attachments;
 
-    @ManyToMany(mappedBy = "conductedLectures", fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinTable(name = "SPEAKERS", joinColumns = @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"))
     private Set<User> speakers;
 
-    @ManyToMany(mappedBy = "listenedLectures", fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinTable(name = "PRESENCE", joinColumns = @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"))
     private Set<User> presentLiseners;
 
     public Lecture() { }

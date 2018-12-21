@@ -1,6 +1,8 @@
 package com.karol172.lecturesmanager.dto;
 
-import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -9,17 +11,15 @@ import java.util.Set;
 public class LectureDto implements Serializable {
 
     @NotNull
-    @NotEmpty
     private Long id;
 
     @NotNull
-    @NotEmpty
     private String title;
 
     private String description;
 
     @NotNull
-    @NotEmpty
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm")
     private LocalDateTime date;
 
     private Set<Long> attachments;

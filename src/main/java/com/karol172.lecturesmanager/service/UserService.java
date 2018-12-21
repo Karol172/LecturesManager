@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public Boolean updateUser (Long userId, User user) {
-        Optional<User> entity = userRepository.findById(userId);
+        final Optional<User> entity = userRepository.findById(userId);
         if (entity.isPresent()) {
             entity.get().setName(user.getName());
             userRepository.save(entity.get());
@@ -44,7 +44,7 @@ public class UserService {
     }
 
     public User get (Long id) {
-        Optional<User> user = userRepository.findById(id);
+        final Optional<User> user = userRepository.findById(id);
         if (user.isPresent())
             user.get().setPassword(null);
         return user.get();
@@ -66,7 +66,7 @@ public class UserService {
     }
 
     public Boolean setActiveForUser (Long idUser, Boolean status) {
-        Optional<User> user = userRepository.findById(idUser);
+        final Optional<User> user = userRepository.findById(idUser);
         if (user.isPresent() && (user.get().getActive() ^ status)) {
             user.get().setActive(status);
             userRepository.save(user.get());
@@ -75,7 +75,7 @@ public class UserService {
     }
 
     public Boolean setRoleForUser (Long idUser, Role role) {
-        Optional<User> user = userRepository.findById(idUser);
+        final Optional<User> user = userRepository.findById(idUser);
         if (user.isPresent() && (user.get().getRole() != role)) {
             user.get().setRole(role);
             userRepository.save(user.get());
@@ -84,14 +84,14 @@ public class UserService {
     }
 
     public Set<Lecture> getListenedLecturesForUser (Long idUser) {
-        Optional<User> user = userRepository.findById(idUser);
+        final Optional<User> user = userRepository.findById(idUser);
         if (user.isPresent())
             return user.get().getListenedLectures();
         return new HashSet<>();
     }
 
     public Set<Lecture> getConductedLecturesForUser (Long idUser) {
-        Optional<User> user = userRepository.findById(idUser);
+        final Optional<User> user = userRepository.findById(idUser);
         if (user.isPresent())
             return user.get().getConductedLectures();
         return new HashSet<>();
@@ -99,7 +99,7 @@ public class UserService {
 
     //TODO: HashingPassword
     public Boolean changePasswordForUser (Long idUser, String oldPassword, String newPassword) {
-        Optional<User> user = userRepository.findById(idUser);
+        final Optional<User> user = userRepository.findById(idUser);
         if (user.isPresent() && user.get().getPassword().equals(oldPassword) && newPassword.length() > 5) {
             user.get().setPassword(newPassword);
             userRepository.save(user.get());

@@ -40,9 +40,8 @@ public class AttachmentService {
             entity.get().setName(attachment.getName());
             entity.get().setDescription(attachment.getDescription());
             attachmentRepository.save(entity.get());
-            return true;
         }
-        return false;
+        return entity.isPresent();
     }
 
     public Attachment get (Long idAttachment) {
