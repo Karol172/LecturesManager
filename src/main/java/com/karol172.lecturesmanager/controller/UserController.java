@@ -31,13 +31,13 @@ public class UserController {
         return userService.createUser(Conventer.fromUserDto(userDto));
     }
 
-    //TODO: Only for wanted user
+    //TODO: Only for user with id
     @PutMapping("/user/{id}")
     public Boolean update (@RequestBody @Valid UserDto userDto, @PathVariable("id") Long userId) {
         return userService.updateUser(userId, Conventer.fromUserDto(userDto));
     }
 
-    //TODO: Only for admin and wanted user
+    //TODO: Only for admin and user with id
     @GetMapping("/user/{id}")
     public User get (@PathVariable("id") Long id) {
         return userService.get(id);
@@ -72,21 +72,21 @@ public class UserController {
         return userService.setRoleForUser(loginId, Role.valueOf(role));
     }
 
-    //TODO: Only for wanted user and admin
+    //TODO: Only for user with id and admin
     @GetMapping("/user/{id}/lectures/listened")
     public List<LectureDto> getListenedLectures (@PathVariable("id") Long idUser) {
         return userService.getListenedLecturesForUser(idUser).stream().sorted(Comparator.comparing(Lecture::getDate))
                 .map(l -> Conventer.fromLecture(l)).collect(Collectors.toList());
     }
 
-    //TODO: Only for wanted user and admin
+    //TODO: Only for user with id and admin
     @GetMapping("/user/{id}/lectures/conducted")
     public List<LectureDto> getConductedLectures (@PathVariable("id") Long idUser) {
         return userService.getConductedLecturesForUser(idUser).stream().sorted(Comparator.comparing(Lecture::getDate))
                 .map(l -> Conventer.fromLecture(l)).collect(Collectors.toList());
     }
 
-    //TODO: Only for wanted user
+    //TODO: Only for user with id
     @PutMapping("/user/{id}/password/change")
     public Boolean changePassword (@PathVariable("id") Long idUser, @RequestBody @Valid PasswordsDto passwordsDto) {
         return userService.changePasswordForUser(idUser, passwordsDto.getOldPassword(), passwordsDto.getNewPassword());
